@@ -1,0 +1,76 @@
+//First creating selenium project
+
+step1:  Open Eclipse and create a new Java project.
+step2:	Add selenium jar files to the build path configuration.
+step3:	After adding the jar files these files are present in Referenced libraries. 
+step4:  Now the eclipse is all set to run selenium project.
+
+
+//code for Automatic calenders
+
+package seleniumScript;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class CalanderDemo1 {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		
+		WebDriver driver = new ChromeDriver();
+		
+		driver.manage().window().maximize(); 
+		
+		driver.manage().deleteAllCookies(); 
+		
+		driver.get("http://seleniumpractise.blogspot.com/2016/08/how-to-handle-calendar-in-selenium.html");
+		
+		
+		driver.findElement(By.xpath("//input[contains(@id,'picker')]")).click();
+		
+		Thread.sleep(1500);
+		
+		String monthyear = driver.findElement(By.xpath("//div[@class='ui-datepicker-title']")).getText();
+		
+		System.out.println(monthyear);
+		
+		String my[] = monthyear.split(" ");
+		
+		String month = my[0];  // September
+		String year = my[1];   // 2023
+		
+		while(!(month.equals("August") && year.equals("2024")))
+		{
+			
+		driver.findElement(By.xpath("//span[text()='Next']")).click();
+		
+		
+		monthyear = driver.findElement(By.xpath("//div[@class='ui-datepicker-title']")).getText();
+	
+		month = monthyear.split(" ")[0];  // August
+		year = monthyear.split(" ")[1];   // 2024
+		}
+		
+		
+		driver.findElement(By.xpath("//a[text()='14']")).click();
+		
+		
+		}
+
+}
+
+
+//Push the code to your GitHub repository from git
+step1: First become root user.
+ # sudo su -
+step2:First copy the path from the eclipse then.
+ # cd <folder path>
+●	Initialize your repository using the following command.
+ # git init
+●	Add all the files to your Git repository using the following command.
+ # git add .
+●	Commit the changes using the following command.
+ # git commit -m “any message”
+●	Push the files to github using the command.
+ # git push -u origin master
