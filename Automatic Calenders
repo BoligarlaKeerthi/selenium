@@ -5,6 +5,7 @@ step2:	Add selenium jar files to the build path configuration.
 step3:	After adding the jar files these files are present in Referenced libraries. 
 step4:  Now the eclipse is all set to run selenium project.
 
+/************************************************************/
 
 //code for Automatic calenders
 
@@ -60,6 +61,37 @@ public class CalanderDemo1 {
 
 }
 
+//code for calanders using JavascriptExecutor
+
+package seleniumScripts;
+
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class CalanderRedBus {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		
+	WebDriver driver = new ChromeDriver();
+		
+		driver.manage().window().maximize();
+		
+		driver.manage().deleteAllCookies();
+		
+		driver.get("https://www.redbus.com/");
+		
+		Thread.sleep(1000);
+		
+		JavascriptExecutor js = ((JavascriptExecutor)driver);
+		
+		js.executeScript("document.getElementById('onward_cal').value='11/12/2024'");
+
+	}
+
+}
+/***********************************************/
 
 //Push the code to your GitHub repository from git
 step1: First become root user.
