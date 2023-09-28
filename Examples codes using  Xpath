@@ -1,0 +1,84 @@
+//code for DialogueBox
+
+package seleniumScripts;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class BootstrapModalDialogueBox {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		
+      WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://www.flipkart.com/");
+		Thread.sleep(1500);
+		driver.findElement(By.xpath("//div[@class='_3skCyB']/descendant::input[1]")).sendKeys("1234567");
+		driver.findElement(By.xpath("//div[@class='JFPqaw']/descendant::span[1]")).click();
+
+	}
+
+}
+/******************************************/
+//code for DropDownXpath
+package seleniumScript;
+import java.util.List;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class DropDownXpath {
+	
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("http://www.ironspider.ca/forms/dropdowns.htm");
+	  WebElement e1 =   driver.findElement(By.xpath("//select[@name='coffee']"));
+	  Select dd = new Select (e1);
+	  dd.selectByIndex(1); 
+		Thread.sleep(1500);
+		dd.selectByValue("sugar"); 
+		 Thread.sleep(1500);
+		 dd.selectByVisibleText("Crisp (har har...)");
+		List<WebElement> li = dd.getOptions();
+		System.out.println("The size of the list:" + li.size());
+		 for(WebElement l: li)   
+		 {
+			 System.out.println(l.getText());
+		 }
+		 
+	}
+
+}
+/****************************************/
+//code for FindElementsDemoXpath 
+
+package seleniumScripts;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class FindElementsDemoXpath {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://www.ironspider.ca/forms/checkradio.htm");
+		driver.findElements(By.xpath("//input[@name='color']")).get(1).click();
+		driver.findElements(By.xpath("//input[@name='color']")).get(2).click();
+		driver.findElements(By.xpath("//input[@name='color']")).get(4).click();
+		
+		}
+
+}
+
+
+
+
+
