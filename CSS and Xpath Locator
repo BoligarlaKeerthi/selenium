@@ -1,0 +1,76 @@
+/* Elements locating through xpath and css 
+Xpath: 
+ Using Xpath as a Locator 
+ Find a web element using Locator Xpath 
+ Xpath can be created in two ways 
+    Relative Xpath: Syntax: relativeXpath : //*[@class=’relativexapath’] 
+   Example: driver.findElement(By.xpath(“//*[@class=’relativexapath’]”)); 
+CSS Locator:
+  CSS allows directional flow which means the traversal is from parent to child only.
+  CSS has better performance and speed than xpath.
+  path: Syntax: tagname#idvalue
+                tag[attribute='value']
+                tag.classattributevalue[attribute='value']
+*/
+/*************************************************************************/
+//example for xpath using  dynamic drop down
+package seleniumScript
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class DynamicDropDown {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://in.search.yahoo.com/");
+		driver.findElement(By.xpath("//input[@id='yschsp']")).sendKeys("Simplilearn");
+		Thread.sleep(7000); // wait for 5 second for the list to appear
+		List<WebElement> l1 = driver.findElements(By.xpath("//div[@class='sa-list-ctn']/descendant::li"));
+		System.out.println(l1.size());
+		for(int i =0; i<l1.size();i++)	 
+	{
+		String text = l1.get(i).getText();
+		System.out.println(text);
+		if(text.contains("free courses"))	
+  	{
+		l1.get(i).click();
+		break;
+	  }
+		
+	}
+}
+}
+/************************************************************************/
+//example code for Css locator
+
+package seleniumScript
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class CSSLocatorDemo {
+  public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://www.facebook.com/");
+		driver.findElement(By.cssSelector("input#email")).sendKeys("admin");
+		driver.findElement(By.cssSelector("input[name='pass']")).sendKeys("admin@123");
+		driver.navigate().to("https://en.wikipedia.org/w/index.php?title=Special:CreateAccount&returnto=Wikipedia%3ASign+up");
+		Thread.sleep(1500);
+	  driver.findElement(By.linkText("Log in")).click();
+    String innertext =  driver.findElement(By.cssSelector("#userloginForm > form > div > div.mw-htmlform-field-HTMLTextField.loginText.mw-userlogin-username.mw-ui-vform-field > label")).getText();
+    System.out.println(innertext);
+        
+      }
+
+}
+
+
+ 
